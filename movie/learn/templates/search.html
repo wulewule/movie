@@ -2,18 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>搜索</title>
+    <title>Movie Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/test.css') }}">
 </head>
 <body>
     <div>
-        <form action="http://127.0.0.1:5000/test" method="POST">
-            <div>
-                <label for="text">电影名</label>
-                <input type="text" name="name" />
-            </div>
-            <div>
-                <input type="submit" value="提交" />
-            </div>
+        <form id="searchbox" action="search" method="POST">
+            <input id="search" type="text" placeholder="Type here" name="name" />
+            <input id="submit" type="submit" value="Search"/>
         </form>
     </div>
 </body>

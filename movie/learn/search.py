@@ -12,9 +12,9 @@ class data_search():
     def data_get(cls):
 
         #获取每一页的链接与电影名字
-        for page in range(1,190):
+        for page in range(1,20):
             url='http://www.ygdy8.net/html/gndy/dyzz/list_23_'+str(page)+'.html'
-            time.sleep(5)
+            time.sleep(1)
             all_html = requests.get(url)
             all_html.encoding='gb2312'#指定编码
             page_link = re.findall('<a href="(.*?)" class="ulink">', all_html.text)
@@ -22,10 +22,9 @@ class data_search():
             
             #访问每一页
             for m in page_link:
-                time.sleep(1)
                 page_url = 'http://www.ygdy8.net'+m
     
-                time.sleep(5)
+                time.sleep(1)
                 page_html = requests.get(page_url)
                 page_html.encoding='gb2312'#指定编码
 
@@ -49,12 +48,13 @@ class data_search():
                 introduction = list(filter(None, re.findall('<br />([\s\S]*?)<br />', re.sub('\u3000', '', page_html.text))))[1:-3]
                 introduction = ''.join(introduction)
                 if introduction:
-                    cls.introductions.append(introduction)
+                    cls.introductions.append(introduction) 
                 else:
-                    cls.introductions.append('暂无介绍')
+                    cls.introductions.append('暂无介绍') 
             
             for x in movie_name:
                 print(x)
+                print('This is'+str(page)+'page')
                 cls.names.append(x)
         return cls.names, cls.links, cls.images, cls.introductions
 # a = data_search()
